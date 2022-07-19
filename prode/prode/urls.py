@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.inicio),
     path('login/', views.login, name="login"),
+    path('mis-grupos/', views.MisGrupos.as_view(),)
 ]
 
 
