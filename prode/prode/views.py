@@ -1,12 +1,19 @@
 from django.shortcuts import render
 from re import template
+from equipos.models import Equipo
+
 def inicio(request):
-	template_name="inicio.html"
-	usuario={
-		"nombre":"Lucas",
-		"apellido":"Bulo"
-	}
+	template_name="inicio.html"	
+
+	equipos = Equipo.objects.all()
+	print(equipos)
+
 	ctx={
-		"user_dict": usuario
+		'equipos': equipos,
+		'nombre': "Edu"
 	}
 	return render(request, template_name,ctx)
+
+
+def login(request):
+	return render(request, "login.html",{})
