@@ -43,7 +43,13 @@
           <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
-   		<a href="{% url 'login' %}" type="button" class="btn btn-success">Iniciar Sesion</a>
+
+{% if user.is_authenticated %}
+   		<a href="{% url 'logout' %}" type="button" class="btn btn-success">Cerrar Sesion</a>
+      {% else %}
+      <a href="{% url 'login' %}" type="button" class="btn btn-success">Iniciar Sesion</a>
+{% endif %}
+
     </div>
   </div>
 </nav>

@@ -20,9 +20,21 @@ def inicio(request):
 	}
 	return render(request, template_name,ctx)
 
-
+"""
 def login(request):
+	print("----------")
+	print(request.POST)
+	if request.method == "POST":
+		nombre_usuario=request.POST.get("username",None)
+		contrasenia=request.POST.get("password",None)
+		Equipo.objects.create(
+			nombre=nombre_usuario
+			)
+
 	return render(request, "login.html",{})
+"""
+
+
 
 """vista basada en funcion
 def mis_grupos(request):
@@ -32,5 +44,5 @@ class MisGrupos(TemplateView):
 	template_name = "mis_grupos.html"
 
 
-
-	
+class LoginView(TemplateView):
+	template_name = "login.html"
