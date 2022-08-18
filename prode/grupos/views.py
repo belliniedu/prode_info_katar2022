@@ -1,27 +1,29 @@
 from django.shortcuts import render
+
+from .models import Grupo
+
+from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic.edit import CreateView, UpdateView
-from .models import Equipo
-from .forms import EquipoForm
+from django.views.generic.edit import CreateView
+from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin #verifica q el usuario este autenticado
 from django.views.generic import ListView
 
 class Crear(LoginRequiredMixin,CreateView):
-	model = Equipo
-	form_class = EquipoForm
-	template_name = "equipos/crear.html"
+	model = Grupo
+	form_class = GrupoForm
+	template_name = "grupos/crear.html"
 
 	def get_success_url(self,**kwargs):
-		return reverse('equipos:listar')
+		return reverse('grupos:listar')
+
+		
+
 
 class Listar(LoginRequiredMixin, ListView):
 	template_name = "equipos/listar.html"
 	model = Equipo
 	context_object_name = "equipos"
-
-	def get_queryset(self):
-		return Equipo.objects.filter(nombre="Argentina")
-
 
 
 class Actualizar(LoginRequiredMixin, UpdateView):
@@ -30,4 +32,11 @@ class Actualizar(LoginRequiredMixin, UpdateView):
 	template_name = "equipos/actualizar.html"
 
 	def get_success_url(self,**kwargs):
-		return reverse('equipos:listar')
+		return reverse('equipos:actualizar')
+
+
+
+
+
+
+
