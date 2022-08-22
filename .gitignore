@@ -1,4 +1,7 @@
-*.pyc
+ *.pyc
 media/*.jpg
 media/*.jpeg
 media/*.png
+prode/media/*.jpg
+prode/media/*.jpeg
+prode/media/*.png

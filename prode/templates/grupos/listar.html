@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block contenido %}
 <br><br><br><br>
 <br><br><br>
@@ -20,7 +20,17 @@
 		<tr>
 			
 			<td>{{g.nombre}}</td>
+			<td>
+
+				{% if g.portada %}
+				  <img src="{{g.portada.url}}" class="col" alt="..." width="225" height="225" >
+				 {% else %}
+				  <img src="{% static 'img/defaults/default-group-icon.png' %}" class="col" alt="..." width="225" height="225">
+				 {% endif %}	
+
+			</td>
 			<td><a href="{% url 'grupos:crear' %}">editar</a></td>
+
 		</tr>
 		{% endfor %}
 	</tbody>

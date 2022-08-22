@@ -18,7 +18,7 @@ class Listar(LoginRequiredMixin, ListView):
 	template_name = "equipos/listar.html"
 	model = Equipo
 	context_object_name = "equipos"
-	paginate_by=3
+	paginate_by=4
 	def get_queryset(self):
 		return Equipo.objects.all().order_by("id")
 

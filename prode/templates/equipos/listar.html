@@ -2,6 +2,15 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
+{% block css-extras %}
+<style>
+	.logo{ 
+		width: 225px; !important
+		height: 225px; !important
+	}
+</style>	
+{% endblock css-extras %}
+
 {% block contenido %}
 <br><br><br><br>
 <br><br><br>
@@ -10,21 +19,28 @@
 <!--<a href="{& url 'equipos:listar' &}">Volver</a> -->
 <a href="{% url 'equipos:crear' %}">Crear</a>
 
-<!--
+
 <div class="row">
-	{% for eq in equipos  %}
+	{% for eq in equipos %}
 		<div class="card" style="width: 18rem;">
-		  <img src="{{equipo.logo.url}}" class="card-img-top" alt="...">
+		  {% if eq.logo %}
+		  <img class="logo" src="{{eq.logo.url}}" class="card-img-top" alt="..." >
+		  {% else %}
+		  <img src="{% static 'img/defaults/default-team-logo.png' %}" class="card-img-top" alt="..." width="225" height="225">
+		  {% endif %}
+
 		  <div class="card-body">
-		    <h5 class="card-title">Card title</h5>
-		    <p class="card-text">{{eq.nombre}}</p>		
-		    <a href="#" class="btn btn-primary">Go somewhere</a>
+		    <h5 class="card-title">{{eq.nombre}}</h5>
+		   		
+		    <a href="{% url 'equipos:actualizar' eq.id %}" class="btn btn-primary">Editar</a>
 		  </div>
 
         </div>
 	{% endfor %}
 </div>
--->
+
+
+<!--
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -45,7 +61,7 @@
 
 
 </table>
-
+-->
 	{% include 'includes/paginado.html' %} 
 
 

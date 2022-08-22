@@ -6,7 +6,7 @@ from usuarios.models import Usuario
 class Grupo(models.Model):
 	nombre=models.CharField(max_length=255)
 	creador=models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="mis_grupos") # lo borra en cascada o SET_NULL, NOT_NOTHING
-
+	portada=models.ImageField(upload_to="portadas_grupos", null=True, blank=True)
 	participantes = models.ManyToManyField(Usuario) #OneToOne
 
 	class Meta:
