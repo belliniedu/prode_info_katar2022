@@ -17,8 +17,10 @@
 <h1>Lista de Equipos</h1>
 <br>
 <!--<a href="{& url 'equipos:listar' &}">Volver</a> -->
-<a href="{% url 'equipos:crear' %}">Crear</a>
+{% if user.es_admin %}
 
+<a href="{% url 'equipos:crear' %}">Crear</a>
+{% endif %}
 
 <div class="row">
 	{% for eq in equipos %}

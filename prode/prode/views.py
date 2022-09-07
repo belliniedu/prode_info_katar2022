@@ -4,8 +4,9 @@ from re import template
 from equipos.models import Equipo
 from django.contrib.auth.decorators import login_required
 from usuarios.models import Usuario
+from core.mixins import superuser_required
 
-
+#@superuser_required
 def inicio(request):
 	template_name="inicio.html"	
 
@@ -39,7 +40,7 @@ def login(request):
 
 """vista basada en funcion
 """
-@login_required # decorador
+@login_required# decorador
 def mis_grupos(request):
 	return render(request, "mis_grupos.html",{})
 """

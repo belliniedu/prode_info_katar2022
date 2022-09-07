@@ -1,13 +1,13 @@
-from django.shortcuts import render
-
-from .models import Grupo
+from .models import Grupo, GrupoUsuarios
 from .forms import GrupoForm
 from django.urls import reverse
 from django.views.generic.edit import CreateView
 from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin #verifica q el usuario este autenticado
 from django.views.generic import ListView
-
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from .models import Usuario
 """
 class Crear(LoginRequiredMixin,CreateView):
 	model = Grupo
@@ -63,5 +63,16 @@ class Crear(LoginRequiredMixin, CreateView):
 		kwargs["usuario_id"]=self.request.user.id
 		return kwargs
 
+def ver(request,pk):
+	template_name="grupos/ver.html"
+	ctx={
+	"grupo": Grupo.objects.get(id=pk)
+	}
+	return render(request, template_name,ctx)
 
-
+def inscripciones(request, id_grupo, id_usuario):
+	gu=GrupoUsuarios.objects.create(
+		grupo=Grupo.objects.get(id=id_grupo),
+		usuario=Usuario.objects.get(id=id_usuario)	
+	)
+	return HttpResponseRedirect(reverse('grupos:listar'))
